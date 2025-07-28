@@ -33,6 +33,23 @@ or
 ## When you are finished
 * Please upload your code to a public git repository (i.e. GitHub, Gitlab)
 
+## 🐳 NEW Docker image
+```bash
+docker-compose up [-d] [--build]
+```
+
+or, in linux based systems:
+```bash
+docker compose up [-d] [--build]
+```
+------
+
+### To load the data from the provided JSON:
+```bash
+docker-compose exec app php ../bin/console app:load-data ../request.json
+```
+
+> Warning, the next docker image is no longer available.
 ## 🐳 Docker image
 Optional. Just here if you want to run it isolated.
 
