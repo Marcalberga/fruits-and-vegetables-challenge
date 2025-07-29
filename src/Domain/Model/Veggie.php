@@ -2,22 +2,31 @@
 
 namespace App\Domain\Model;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Field;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\Id;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
+
+/**
+ * @ODM\Document
+ * @ODM\InheritanceType("SINGLE_COLLECTION")
+ * @ODM\DiscriminatorField("type")
+ * @ODM\DiscriminatorMap({
+ *     "fruit"=App\Domain\Model\Fruit::class,
+ *     "vegetable"=App\Domain\Model\Vegetable::class
+ * })
+ */
 abstract class Veggie
 {
-    #[Id(type: "integer", strategy: "NONE")]
+    #[ODM\Id(type: "integer", strategy: "NONE")]
     public int $id;
-    #[Field]
+    #[ODM\Field(type: "string")]
     public string $name;
-    #[Field]
+    #[ODM\Field(type: "integer")]
     public int $quantity;
 
-    protected function __construct(
-        int $id,
-        string $name,
-        int $quantity
+    public function __construct(
+        $id,
+        $name,
+        $quantity
     ){
         $this->id = $id;
         $this->name = $name;

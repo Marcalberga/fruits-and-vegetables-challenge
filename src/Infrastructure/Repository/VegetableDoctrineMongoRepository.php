@@ -25,9 +25,9 @@ class VegetableDoctrineMongoRepository implements VegetableRepository
     public function list(): array
     {
         $qb = $this->dm->createQueryBuilder(Vegetable::class);
-        $result = $qb->select('f')
+        $result = $qb
             ->getQuery()
             ->execute();
-        $varToStopDebugger = true;
+        return $result->toArray();
     }
 }

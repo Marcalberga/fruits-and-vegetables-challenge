@@ -49,6 +49,28 @@ docker compose up [-d] [--build]
 docker-compose exec app php ../bin/console app:load-data ../request.json
 ```
 
+## API DOCS
+GET all veggies:
+`GET /api/veggies` -> can be filtered out with query params `?type=[fruit|vegetable]`
+
+GET all vegetables
+`GET /api/vegetables`
+
+GET all fruits
+`GET /api/fruits`
+
+Add a veggie:
+`POST /api/veggies`
+Body:
+```json
+{
+  "id":"integer",
+  "name": "string",
+  "quantity": "integer",
+  "unit": "g|kg"
+}
+```
+
 > Warning, the next docker image is no longer available.
 ## 🐳 Docker image
 Optional. Just here if you want to run it isolated.

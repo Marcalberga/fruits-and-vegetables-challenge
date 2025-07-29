@@ -25,10 +25,10 @@ class FruitDoctrineMongoRepository implements FruitRepository
     public function list(): array
     {
         $qb = $this->dm->createQueryBuilder(Fruit::class);
-        $result = $qb->select('f')
+        $result = $qb
             ->getQuery()
             ->execute();
-        $varToStopDebugger = true;
+        return $result->toArray();
     }
 
 
