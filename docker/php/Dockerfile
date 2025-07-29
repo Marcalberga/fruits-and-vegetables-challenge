@@ -18,6 +18,10 @@ RUN apt-get update && apt-get install -y \
   pdo \
   zip
 
+RUN pecl install mongodb \
+  && docker-php-ext-enable mongodb \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /var/www/html/public
 
 COPY . /var/www/html
