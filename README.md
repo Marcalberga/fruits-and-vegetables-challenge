@@ -71,6 +71,9 @@ Body:
 }
 ```
 
+Search:
+`GET /api/search` -> valid search: "name (partial)", "minQuantity (int)", "maxQuantity (int)", "type (fruit|vegetable)"
+
 > Warning, the next docker image is no longer available.
 ## 🐳 Docker image
 Optional. Just here if you want to run it isolated.

@@ -5,6 +5,7 @@ namespace App\Infrastructure\Repository;
 use App\Domain\Model\Fruit;
 use App\Domain\Persistence\FruitRepository;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use MongoDB\BSON\Regex;
 
 class FruitDoctrineMongoRepository implements FruitRepository
 {
@@ -31,5 +32,34 @@ class FruitDoctrineMongoRepository implements FruitRepository
         return $result->toArray();
     }
 
+    public function get(int $id): ?Fruit
+    {
+        $qb = $this->dm->createQueryBuilder(Fruit::class);
+        return $qb->field('id')
+            ->equals($id)
+            ->getQuery()
+            ->getSingleResult();
+    }
 
+    public function search(array $criteria): array
+    {
+        if (!empty($criteria['type']) && $criteria['type'] !== 'fruit') {
+            return [];
+        }
+
+        $qb = $this->dm->createQueryBuilder(Fruit::class);
+        if (!empty($criteria['name'])) {
+            $qb->field('name')->equals(new Regex($criteria['name'], "i"));
+        }
+        if (!empty($criteria['minQuantity'])) {
+            $qb->field('quantity')->gte( (int) $criteria['minQuantity']);
+        }
+        if (!empty($criteria['maxQuantity'])) {
+            $qb->field('quantity')->lte( (int) $criteria['maxQuantity']);
+        }
+
+        return $qb->getQuery()
+            ->execute()
+            ->toArray();
+    }
 }
