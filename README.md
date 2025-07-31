@@ -74,6 +74,9 @@ Body:
 Search:
 `GET /api/search` -> valid search: "name (partial)", "minQuantity (int)", "maxQuantity (int)", "type (fruit|vegetable)"
 
+## Running tests:
+`docker-compose exec app  php ../vendor/phpunit/phpunit/phpunit -c ../phpunit.xml.dist` -> will run all tests existing on the project.
+
 > Warning, the next docker image is no longer available.
 ## 🐳 Docker image
 Optional. Just here if you want to run it isolated.

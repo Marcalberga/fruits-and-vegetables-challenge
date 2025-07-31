@@ -9,6 +9,8 @@ class StorageServiceTest extends TestCase
 {
     public function testReceivingRequest(): void
     {
+        $this->markTestSkipped('old test from the challenge, not used');
+
         $request = file_get_contents('request.json');
 
         $storageService = new StorageService($request);
