@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\CLI\Symfony\Command;
 
-use App\Application\Command\LoadDataFromFile;
+use App\Application\Command\CLI\LoadDataFromFile;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

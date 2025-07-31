@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Command;
+namespace App\Application\Command\CLI;
 
 use App\Domain\Exception\InvalidCategoryException;
 use App\Domain\Model\Fruit;
@@ -18,11 +18,17 @@ class LoadDataFromFile
         protected VegetableRepository $vegetableRepository)
     {}
 
-    public function execute(string $path): void {
+    protected function loadFile(string $path): array
+    {
         /* TODO: Load JSON securely and double checking origin and contents before any action */
         $json = file_get_contents($path);
-        $data = json_decode($json, true);
+        return json_decode($json, true);
+    }
 
+    public function execute(string $path): void
+    {
+
+        $data = $this->loadFile($path);
         foreach ($data as $veggieData) {
             // do stuff
             try {
@@ -33,7 +39,6 @@ class LoadDataFromFile
             }
             $repository = $this->getRepositoryForClass($model);
             $repository->add($model);
-            // store to database
         }
 
     }

@@ -71,6 +71,8 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "symfony/browser-kit": "7.2.*",
+        "symfony/css-selector": "7.2.*"
     }
 }
